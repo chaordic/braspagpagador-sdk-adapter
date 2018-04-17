@@ -14,10 +14,12 @@ use Webjump\Braspag\Pagador\Http\Services\ServiceInterface;
 
 interface ClientInterface
 {
-    const API_URI               = 'https://api.braspag.com.br/v2';
-    const API_CONSULT_URI       = 'https://apiquery.braspag.com.br/v2';
-    const API_URI_TEST          = 'https://apihomolog.braspag.com.br/v2';
-    const API_CONSULT_URI_TEST  = 'https://apiqueryhomolog.braspag.com.br/v2';
+    const API_URI                  = 'https://api.braspag.com.br/v2';
+    const API_CONSULT_URI          = 'https://apiquery.braspag.com.br/v2';
+    const API_URI_HOMOLOG          = 'https://apihomolog.braspag.com.br/v2';
+    const API_CONSULT_URI_HOMOLOG  = 'https://apiqueryhomolog.braspag.com.br/v2';
+    const API_URI_SANDBOX          = 'https://apisandbox.braspag.com.br/v2';
+    const API_CONSULT_URI_SANDBOX  = 'https://apiquerysandbox.braspag.com.br/v2';
 
-    public function request(ServiceInterface $service, $method = 'POST', $uriComplement = '');
+    public function request(ServiceInterface $service, $method = 'POST', $environment = 'production');
 }

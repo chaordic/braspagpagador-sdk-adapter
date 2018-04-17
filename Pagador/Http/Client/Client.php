@@ -32,24 +32,30 @@ class Client implements ClientInterface
      * @param ServiceInterface $service
      * @param string $method
      * @param string $uriComplement
-     * @param bool $isTestEnvironment
+     * @param string $environment
      * @return mixed|\Psr\Http\Message\ResponseInterface
      */
     public function request(
         ServiceInterface $service,
         $method = 'POST',
         $uriComplement = '',
-        $isTestEnvironment = false
+        $environment = 'production'
     )
     {
         $params = $service->getRequest()->getParams();
 
-        $apiURI = self::API_URI;
-        $apiConsultURI = self::API_CONSULT_URI;
-
-        if ($isTestEnvironment === true) {
-            $apiURI = self::API_URI_TEST;
-            $apiConsultURI = self::API_CONSULT_URI_TEST;
+        switch (strtolower($environment)) {
+            case 'homolog':
+                $apiURI = self::API_URI_HOMOLOG;
+                $apiConsultURI = self::API_CONSULT_URI_HOMOLOG;
+                break;
+            case 'sandbox':
+                $apiURI = self::API_URI_SANDBOX;
+                $apiConsultURI = self::API_CONSULT_URI_SANDBOX;
+                break;
+            default:
+                $apiURI = self::API_CONSULT_URI_SANDBOX;
+                $apiConsultURI = self::API_CONSULT_URI_TEST;
         }
 
         $uri = $apiURI . $service->getEndPoint() . $uriComplement;
