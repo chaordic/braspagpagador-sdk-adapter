@@ -27,9 +27,9 @@ class GetCommand extends CommandAbstract
         $params = $this->request->getParams();
         $uriComplement = $params['uriComplement']['payment_id'];
 
-        $isTestEnvironment =  (bool) $this->request->getData()->isTestEnvironment();
+        $environment = $this->request->getData()->getEnvironment();
 
-        $response = $client->request($sales, 'GET', $uriComplement, $isTestEnvironment);
+        $response = $client->request($sales, 'GET', $uriComplement, $environment);
 
         $type = '';
         if ($this->request->getType()) {

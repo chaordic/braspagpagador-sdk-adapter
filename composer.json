@@ -2,7 +2,7 @@
   "name": "webjump/braspagpagador-sdk-adapter",
   "type": "library",
   "description": "Braspag API PHP SDK",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "keywords": [
     "payment",
     "credit-card",
