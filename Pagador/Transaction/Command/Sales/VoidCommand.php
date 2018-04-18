@@ -35,10 +35,9 @@ class VoidCommand extends CommandAbstract
             $uriComplement .= '?' . \http_build_query($params['uriComplement']['additional']);
         }
 
-        $isTestEnvironment =  (bool) $this->request->getData()->isTestEnvironment();
+        $environment = $this->request->getData()->getEnvironment();
 
-
-        $response = $client->request($sales, 'PUT', $uriComplement, $isTestEnvironment);
+        $response = $client->request($sales, 'PUT', $uriComplement, $environment);
 
         $this->result = ResponseFactory::make($this->getResponseToArray($response), 'actions');
     }
